@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,15 +16,19 @@
             background: #fff000;
             perspective: 500px;
         }
+
         .card {
             position: relative;
             width: 100px;
             height: 150px;
             margin: 1em;
+            /* 변화없는 디폴트에 0deg적용하여 성능 향상 */
             transform: rotateY(0deg);
-            transition: 1s;
+            transition: 0.7s;
+            /* 중첩된 요소에 3-D 적용되도록 (자식에게 전달) 기본값: flat */
             transform-style: preserve-3d;
         }
+
         .card-side {
             display: flex;
             align-items: center;
@@ -35,21 +40,25 @@
             height: 100%;
             border-radius: 0.5em;
             font-size: 1.5rem;
+            /* 카드의 뒷면은 보이지 않도록 */
             backface-visibility: hidden;
         }
+
         .card-side-front {
-            z-index: 1;
             background: white;
         }
+
         .card-side-back {
             background: red;
             transform: rotateY(180deg);
         }
-        .world:hover .card {
+
+        .card:hover {
             transform: rotateY(180deg);
         }
     </style>
 </head>
+
 <body>
     <div class="world">
         <div class="card">
@@ -58,4 +67,5 @@
         </div>
     </div>
 </body>
+
 </html>
