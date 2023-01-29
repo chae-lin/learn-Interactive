@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>training</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .wrap {
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+      background-color: black;
+      color: #fff;
+    }
+
+    .bg {
+      width: 120%;
+    }
+
+    .bg-pipe {
+      position: absolute;
+      width: 40%;
+      bottom: -30%;
+      left: -10%;
+    }
+
+    .human {
+      position: absolute;
+      width: 30%;
+      top: 4%;
+      left: calc(50% - 15%);
+      z-index: 5;
+    }
+
+    .title-box {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      width: 70%;
+      height: 26%;
+      transform: translate(-50%, 0);
+      transform-style: preserve-3d;
+      /* [S]: 원근감을 위한 z와의 거리 */
+      perspective: 300px;
+    }
+
+    .title {
+      height: 100%;
+      background: url(image1/layer-text.svg) no-repeat center;
+      margin: 0;
+    }
+
+    .title span {
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      clip: rect(1px, 1px, 1px, 1px);
+      z-index: -1;
+    }
+  </style>
+  <script>
+    let position;
+
+    let human;
+    let bg;
+    let bgPipe;
+    let pipe;
+
+    let x = 0;
+    let y = 0;
+    let mx = 0;
+    let my = 0;
+    let speed = 0.009;
+
+    window.onload = function () {
+      position = document.getElementsByTagName("p")[0];
+
+      bg = document.querySelector(".bg");
+      bgPipe = document.querySelector(".bg-pipe");
+      human = document.querySelector(".human");
+      title = document.querySelector(".title");
+
+      window.addEventListener("mousemove", mouseFunc, false);
+
+      function mouseFunc(e) {
+        x = (e.clientX - window.innerWidth / 2);
+        y = (e.clientY - window.innerHeight / 2);
+      }
+      loop();
+    }
+
+    function loop() {
+      mx += (x - mx) * speed;
+      my += (y - my) * speed;
+
+      position.innerHTML = "x: " + x + " mx: " + mx;
+
+      human.style.transform = "translate(" + (mx / 9) + "px," + (my / 9) + "px)";
+      bg.style.transform = "translate(" + -(mx / 8) + "px," + -(my / 8) + "px)";
+      title.style.transform = "translate3d(" + -(mx / 2) + "px," + -(my / 2) + "px,0) rotate3d(0,1,0," + -mx / 50 + "deg)";
+      bgPipe.style.transform = "translate(" + (mx / 10) + "px," + (my / 10) + "px)";
+
+      window.requestAnimationFrame(loop);
+    }
+
+
+  </script>
+
+</head>
+
+<body>
+  <div class="wrap">
+    <p>test</p>
+    <img src="image1/layer-1.jpg" class="bg" alt="벽">
+    <img src="image1/layer-2.png" class="human" alt="사람">
+    <img src="image1/layer-3.png" class="bg-pipe" alt="파이프">
+    <div class="title-box">
+      <h1 class="title"><span>fix nothing</span></h1>
+    </div>
+  </div>
+</body>
+
+</html>

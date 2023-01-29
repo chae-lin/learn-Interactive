@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>training</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    img {
+      position: absolute;
+    }
+
+    .vod {
+      position: absolute;
+    }
+  </style>
+  <script>
+    let x = 0;
+    let y = 0;
+    let mx = 0;
+    let my = 0;
+    let speed = 0.01;
+
+    let imgArr;
+    let vod;
+
+    window.onload = function () {
+      imgArr = document.getElementsByTagName("img");
+      vod = document.querySelector('.vod');
+
+      window.addEventListener("mousemove", mouseFunc, false);
+
+      function mouseFunc(e) {
+        x = (e.clientX - window.innerWidth / 2);
+        y = (e.clientY - window.innerHeight / 2);
+      }
+      loop();
+    }
+
+    function loop() {
+      mx += (x - mx) * speed;
+      my += (y - my) * speed;
+
+      imgArr[1].style.transform = "translate(" + (mx / 10) + "px," + (my / 10) + "px)";
+      imgArr[2].style.transform = "translate(" + (mx / 6) + "px," + (my / 6) + "px)";
+      imgArr[3].style.transform = "translate(" + (mx / 4) + "px," + (my / 4) + "px)";
+      vod.style.transform = "translate(" + (mx / 8) + "px," + (my / 8) + "px)";
+
+      window.requestAnimationFrame(loop);
+    }
+
+
+  </script>
+
+</head>
+
+<body>
+  <img src="image2/4-layer1.png">
+  <img src="image2/4-layer2.png">
+  <div class="vod">
+    <video autoplay="" playsinline="" loop="" muted=""
+      src="https://paidpost-assets.nyt.com/paidpost/allbirds/birds-eye-view/videos/3-27c8c3ea.webm"></video>
+  </div>
+  <img src="image2/4-layer3.png">
+  <img src="image2/4-layer4.png">
+</body>
+
+</html>
