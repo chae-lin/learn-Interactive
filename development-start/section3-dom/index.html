@@ -52,9 +52,37 @@
     </div>
 
     <script>
+        // element 선택
         let ilbuni = document.querySelector('.a');
+
+        // attr 추가
         ilbuni.setAttribute('data-id', 123);
-        console.log(ilbuni.getAttribute('data-id'));
+        const getAttr = ilbuni.getAttribute('data-id');
+
+        // html 추가
+        const pElement = document.createElement('p');
+        pElement.innerHTML = '텍스트를 입력';
+
+        // 태그 추가 (appendChild: 맨 끝에 자식 추가)
+        const charactersElement = document.querySelector('.characters');
+        charactersElement.appendChild(pElement);
+
+        // 태그 삭제
+        const deleteElement = document.querySelector('.ilbuni.b');
+        charactersElement.removeChild(deleteElement);
+
+        // 클래스 추가
+        const classAddElement = document.querySelector('.ilbuni.a');
+        classAddElement.classList.add('special');
+        // classAddElement.className('special'); 클래스를 전부 날리고 추가
+
+        // 클래스 제거
+        classAddElement.classList.remove('special');
+
+        // classList.remove   제거
+        // classList.replace  교체
+        // classList.contains 찾기
+        // classList.toggle   토클
     </script>
 </body>
 

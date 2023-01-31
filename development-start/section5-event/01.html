@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .characters {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #fff000;
+        }
+
+        .ilbuni {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .characters .ilbuni {
+            display: inline-block;
+        }
+
+        .special {
+            border: 10px dashed red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="characters">
+        <div class="ilbuni a">
+            <img src="images/ilbuni_0.png" alt="일분이">
+        </div>
+        <div class="ilbuni b">
+            <img src="images/ilbuni_1.png" alt="일분이">
+        </div>
+        <div class="ilbuni c">
+            <img src="images/ilbuni_2.png" alt="일분이">
+        </div>
+        <div class="ilbuni d">
+            <img src="images/ilbuni_3.png" alt="일분이">
+        </div>
+    </div>
+
+    <script>
+        // 문서 전체(리소스 전부) 로드 후 이벤트 출력
+        // window.addEventListener('load', function () {
+
+        // html dom 생성 후 이벤트 출력
+        window.addEventListener('DOMContentLoaded', function () {
+            console.log('실행!')
+        })
+
+        // 클릭 이벤트
+        // const ilbuni01 = document.querySelector('.ilbuni.a');
+        const ilbuni01 = document.querySelector('.ilbuni:nth-child(1)');
+        ilbuni01.addEventListener('click', function () {
+            ilbuni01.classList.toggle('special');
+        })
+
+
+    </script>
+</body>
+
+</html>
