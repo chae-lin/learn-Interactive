@@ -67,6 +67,22 @@
             ilbuni01.classList.toggle('special');
         })
 
+        // this: 이벤트가 등록되어 있는 객체
+        const characters = document.querySelector('.characters');
+        characters.addEventListener('click', function (e) {
+            console.log('this:', this);
+            // this 와 동일
+            console.log('e.currentTarget:', e.currentTarget);
+            // 실제로 클릭한 객체
+            console.log('e.target', e.target)
+        })
+
+        const ilbunis = document.querySelectorAll('.ilbuni');
+        ilbunis.forEach(el => {
+            el.addEventListener('click', function () {
+                console.log('ilbunis:', this)
+            })
+        })
 
     </script>
 </body>
