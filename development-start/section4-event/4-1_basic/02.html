@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +15,17 @@
             height: 75vw;
             background: #fff000;
         }
+
         @keyframes moving {
             from {
                 transform: translateX(0);
             }
+
             to {
                 transform: translateX(90vw);
             }
         }
+
         .ilbuni {
             position: absolute;
             width: 100px;
@@ -30,19 +34,27 @@
             background-position: 50% 50%;
             background-size: contain;
             animation: moving infinite alternate;
+            cursor: pointer;
         }
+
+        .ilbuni.stop {
+            animation-play-state: paused;
+        }
+
         .ilbuni.a {
             left: 5%;
             bottom: 5%;
             background-image: url('images/ilbuni_0.png');
             animation-duration: 2s;
         }
+
         .ilbuni.b {
             left: 10%;
             bottom: 3%;
             background-image: url('images/ilbuni_1.png');
             animation-duration: 3s;
         }
+
         .ilbuni.c {
             left: 7%;
             bottom: 10%;
@@ -51,6 +63,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="stage">
         <div class="ilbuni a"></div>
@@ -59,7 +72,17 @@
     </div>
 
     <script>
-        // 직접 타이핑 해보세요
+        let ilbunis = document.querySelectorAll('.ilbuni');
+        ilbunis.forEach(el => el.addEventListener('click', clickHandler))
+
+        function clickHandler(e) {
+            this.classList.add('stop')
+            // this = e.currentTarget 과 동일! 
+
+            // + 자식 요소를 삭제 .removeChild()
+            // + 부모 요소에 접근 .parentNode
+        }
     </script>
 </body>
+
 </html>

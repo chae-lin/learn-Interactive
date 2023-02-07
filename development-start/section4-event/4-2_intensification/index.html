@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="stage">
+        <div class="ilbuni a"><span></span></div>
+        <div class="ilbuni b"></div>
+        <div class="ilbuni c"></div>
+    </div>
+
+    <script>
+        (function () {
+            // 이벤트 위임
+            const stage = document.querySelector('.stage');
+
+            function clickHandler(e) {
+                if (e.target.classList.contains('ilbuni')) {
+                    stage.removeChild(e.target);
+                }
+            }
+
+            // 자식이 있는 경우
+            // 1. 스크립트로 해결
+            // function clickHandler(e) {
+            //     let $this = e.target.closest('.ilbuni');
+            //     if ($this) {
+            //         stage.removeChild($this);
+            //     }
+            // }
+
+            // function clickHandler(e) {
+            //     let elem = e.target;
+
+            //     while (!elem.classList.contains('ilbuni')) {
+            //         elem = elem.parentNode;
+
+            //         if (elem.nodeName == 'BODY') {
+            //             elem = null;
+            //             return;
+            //         }
+            //     }
+
+            //     stage.removeChild(elem);
+            // }
+            // 2. css로 해결: pointer-events를 사용하면 자식 전부 이벤트 발생되지 않는다.
+            // .ilbuni span {pointer-events: none;}
+
+            // attr속성 가져오기: Element.getAttribute()
+            //               : Element.datsset.value
+
+            stage.addEventListener('click', clickHandler);
+        })();
+    </script>
+</body>
+
+</html>
