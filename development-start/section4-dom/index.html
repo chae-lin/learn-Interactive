@@ -57,7 +57,11 @@
 
         // attr 추가
         ilbuni.setAttribute('data-id', 123);
+        //+ ilbuni.dataset('id', 123);
+
+        // attr 가져오기
         const getAttr = ilbuni.getAttribute('data-id');
+        //+ const getAttr = ilbuni.dataset.id;
 
         // html 추가
         const pElement = document.createElement('p');
@@ -67,11 +71,11 @@
         const charactersElement = document.querySelector('.characters');
         charactersElement.appendChild(pElement);
 
-        // 태그 삭제
+        // 태그 삭제 (removeChild)
         const deleteElement = document.querySelector('.ilbuni.b');
         charactersElement.removeChild(deleteElement);
 
-        // 클래스 추가
+        // 클래스 추가 (classList.add)
         const classAddElement = document.querySelector('.ilbuni.a');
         classAddElement.classList.add('special');
         // classAddElement.className('special'); 클래스를 전부 날리고 추가

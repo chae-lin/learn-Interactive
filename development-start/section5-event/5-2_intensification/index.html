@@ -8,35 +8,51 @@
     <title>Interactive Web</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 
+        body아래에 script파일을 연결하는 이유
+        1. head에 추가하면 script를 다 그리기전까지 html이 생성되지 않는다. 
+        2. script에서 html을 선택시 html을 찾을 수 없다.
+        
+        head에 연결후 위와 같은 문제를 해결하기 위해 defer, async를 사용할 수 있다.
+        defer, async는 별도의 script파일을 연결시에만 사용 가능.
+        <script src="/examples/script_src.js" defer></script> 
+    -->
 </head>
 
 <body>
     <div class="stage">
-        <div class="ilbuni a"><span></span></div>
+        <div class="ilbuni a"></div>
         <div class="ilbuni b"></div>
         <div class="ilbuni c"></div>
     </div>
 
     <script>
         (function () {
-            // 이벤트 위임
+            // 이벤트 위임 (각 ilbuni별로 쿨락아벤트를 연결시 이런 경우가 많아지면 성능상 이슈가 생길 수 있어 이벤트 위임을 사용.)
+            // 이벤트 위임 시용시 동적으로 콘텐츠가 로드되어도 이벤트 연결.
             const stage = document.querySelector('.stage');
 
             function clickHandler(e) {
+                // ilbuni 클래를 갖고 있는 경우 이벤트 실행하여 error 안나도록.
                 if (e.target.classList.contains('ilbuni')) {
                     stage.removeChild(e.target);
                 }
             }
 
-            // 자식이 있는 경우
+            // attr속성 가져오기: Element.getAttribute()  -> Element.getAttribute('data-value')
+            //               : Element.dataset  ->  Element.dataset.value
+
+            // 이벤트 위임시 자식이 있어 이벤트가 자식에게도 연결되는 경우
             // 1. 스크립트로 해결
+            // (1-1) closest: 해당하는 가장 가까운 element를 선택해준다.
             // function clickHandler(e) {
             //     let $this = e.target.closest('.ilbuni');
             //     if ($this) {
             //         stage.removeChild($this);
             //     }
             // }
-
+            // (1-2) parentNode
             // function clickHandler(e) {
             //     let elem = e.target;
 
@@ -48,14 +64,12 @@
             //             return;
             //         }
             //     }
-
             //     stage.removeChild(elem);
             // }
-            // 2. css로 해결: pointer-events를 사용하면 자식 전부 이벤트 발생되지 않는다.
-            // .ilbuni span {pointer-events: none;}
 
-            // attr속성 가져오기: Element.getAttribute()
-            //               : Element.datsset.value
+            // 2. css로 해결: pointer-events를 사용하면 자식 전부 이벤트 발생되지 않는다.
+            // pointer-events: none;사용시 하위에 있는 영역들은 모두 target으로 잡을 수 없다.
+            // .ilbuni span {pointer-events: none;}
 
             stage.addEventListener('click', clickHandler);
         })();

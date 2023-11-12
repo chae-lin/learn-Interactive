@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>setInterval</title>
+	<style>
+		.btn {
+			font-size: 2rem;
+		}
+	</style>
+</head>
+
+<body>
+	<button class="btn play">재실행</button>
+	<button class="btn stop">취소</button>
+
+	<script>
+		let timeId;
+		const btnStop = document.querySelector('.btn.stop');
+		const btnPlay = document.querySelector('.btn.play');
+
+		function sample() {
+			console.log('sample!');
+		}
+
+		timeId = setInterval(sample, 1000);
+
+		btnStop.addEventListener('click', function () {
+			clearInterval(timeId);
+		});
+		btnPlay.addEventListener('click', function () {
+			timeId = setInterval(sample, 1000);
+		});
+	</script>
+</body>
+
+</html>

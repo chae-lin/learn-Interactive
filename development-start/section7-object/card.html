@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object</title>
+    <style>
+        .card {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 150px;
+            border: 2px solid black;
+            border-radius: 10px;
+            font-size: 3rem;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const person = {};
+        // name, age = 속성(property)
+        person.name = '일분이';
+        person.age = 10;
+        // introduce = 메소드(method)
+        person.introduce = function () {
+            console.log('안녕하세요. 저는 일분이, 10살 이에요.')
+        }
+
+        // 생성자 함수(constructor)
+        // 생성자 함수명의 첫글자는 대문자로 사용.
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        // 개별 값이 아닌 공유가 가능한 애들은 prototype객체에 정의.
+        Person.prototype.introduce = function () {
+            console.log(`안녕하세요. 저는 ${this.name}, ${this.age}살 이에요.`)
+        }
+
+        // 인스턴스(instnce)
+        const person01 = new Person('일분이', 10);
+        const person02 = new Person('이분이', 7);
+
+        // -------------------- 
+        function Card(num, color) {
+            this.num = num;
+            this.color = color;
+            // init 함수를 호출함으로써 dom에 그립.
+            this.init();
+        }
+
+        Card.prototype = {
+            // 새로운 객체로서 prototype을 선언할때에는 constructor 속성에 만든 생성자 함수로 넣어줘야한다. 
+            constructor: Card,
+            init: function () {
+                const mainElem = document.createElement('div');
+                mainElem.style.color = this.color;
+                mainElem.innerHTML = this.num;
+                mainElem.classList.add('card');
+                document.body.appendChild(mainElem);
+            }
+        };
+
+        const card1 = new Card(1, 'green');
+        const card2 = new Card(7, 'blue');
+    </script>
+</body>
+
+</html>

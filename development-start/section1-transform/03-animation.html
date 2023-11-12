@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +11,17 @@
             0% {
                 transform: translate(0, 0);
             }
+
             50% {
                 background: red;
                 transform: translate(300px, 0);
             }
+
             100% {
                 transform: translate(400px, 500px);
             }
         }
+
         .box {
             display: flex;
             align-items: center;
@@ -27,11 +31,14 @@
             border: 2px solid #000;
             background: #fff000;
             animation: sample-ani 2s linear forwards 3;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
         }
     </style>
 </head>
+
 <body>
     <h1>Animation</h1>
     <div class="box">BOX</div>
 </body>
+
 </html>
